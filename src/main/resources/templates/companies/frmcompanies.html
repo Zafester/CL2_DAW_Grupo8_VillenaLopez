@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link th:href="@{/css/bootstrap/bootstrap.min.css}" rel="stylesheet">
+<link th:href="@{/css/fontawesome/all.css}" rel="stylesheet">
+
+<script th:src="@{/js/bootstrap/bootstrap.bundle.js}"
+	type="text/javascript"></script>
+<script th:src="@{/js/jquery/jquery.js}" type="text/javascript"></script>
+</head>
+<body>
+	<hr />
+	<script th:src="@{/js/web/frmcompanies.js}" type="text/javascript"></script>
+	<button type="button" id="btnagregar" class="btn btn-outline-success">Agregar
+		Compañia</button>
+	<hr />
+	<table class="table table-striped-columns" id="tblcompanie">
+		<thead>
+			<tr>
+				<th scope="col">Id Compañia</th>
+				<th scope="col">Nombre Compañia</th>
+				<th scope="col">Update</th>
+				<th scope="col">Delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="tb_companies :${listacompanies}">
+				<td th:text="${tb_companies.id_company}"></td>
+				<td th:text="${tb_companies.name_company}"></td>
+				<td>
+					<button type="button" class="btn btn-success btnactualizar"
+					th:data-id_companies="${tb_companies.id_company}"
+					th:data-name_company="${tb_companies.name_company}">
+						<i class="fas fa-wrench"></i>
+					</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger btneliminarcompanie" 
+					th:data-id_companies="${tb_companies.id_company}"
+					th:data-name_company="${tb_companies.name_company}"
+					>
+						<i class="fas fa-trash"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- Registro -->
+	<div class="modal fade" id="modalCompanie" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
+						Update Companie</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtIdCompanie" class="form-label"> Id Companie</label>
+						<input type="text" class="form-control" id="txtIdCompanie">
+						<label for="txtnombreCompanie" class="form-label"> Name
+							Companie</label> <input type="text" class="form-control"
+							id="txtnombreCompanie">
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="btnguardar">Save</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--  Eliminar  -->
+	<div class="modal fade" id="modalEliminarCompanie" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal
+						Delete Companie</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<label id="mensajeeliminar"></label> <input type="hidden"
+						id="hddideliminarcompanie" value="0">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="btneliminar">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+</body>
+</html>
